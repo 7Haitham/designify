@@ -119,35 +119,68 @@ class DesignifyInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-        side: BorderSide(
-          color: borderColor ?? theme.primaryColor,
-          width: 1.0,
-        ),
+    final inputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(borderRadius),
+      borderSide: BorderSide(
+        color: borderColor,
+        width: 1.0,
       ),
-      color: Colors.white,
-      elevation: 0,
-      margin: EdgeInsets.zero,
-      child: TextField(
-        key: Key('${label}Field'),
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        maxLines: maxLines,
-        enabled: enabled,
-        style: TextStyle(
-          color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
+    );
+
+    return TextField(
+      key: Key('${label}Field'),
+      controller: controller,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+      maxLines: maxLines,
+      enabled: enabled,
+      autofocus: autofocus,
+      textCapitalization: textCapitalization,
+      textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
+      textDirection: textDirection,
+      readOnly: readOnly,
+      showCursor: showCursor,
+      expands: expands,
+      maxLength: maxLength,
+      onChanged: onChanged,
+      onSubmitted: onSubmitted,
+      onTap: onTap,
+      focusNode: focusNode,
+      style: TextStyle(
+        color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
+      ),
+      decoration: InputDecoration(
+        label: Text(label),
+        hintText: hintText,
+        border: inputBorder,
+        enabledBorder: inputBorder,
+        focusedBorder: inputBorder.copyWith(
+          borderSide: BorderSide(
+            color: theme.primaryColor,
+            width: 2.0,
+          ),
         ),
-        decoration: InputDecoration(
-          label: DesignifyText(label, fontSize: 14),
-          hintText: hintText,
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
+        errorBorder: inputBorder.copyWith(
+          borderSide: BorderSide(
+            color: theme.colorScheme.error,
+            width: 1.0,
+          ),
+        ),
+        focusedErrorBorder: inputBorder.copyWith(
+          borderSide: BorderSide(
+            color: theme.colorScheme.error,
+            width: 2.0,
+          ),
+        ),
+        contentPadding: contentPadding,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        counterText: showCounter ? null : '',
+        errorText: validator?.call(controller?.text),
+        errorStyle: TextStyle(
+          color: theme.colorScheme.error,
+          fontSize: 12.0,
         ),
       ),
     );
