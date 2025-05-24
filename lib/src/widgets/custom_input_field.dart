@@ -119,71 +119,70 @@ class DesignifyInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final inputBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
-      borderSide: BorderSide(
-        color: borderColor,
-        width: 1.0,
+    
+    // Create a card with the specified border
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
+        side: BorderSide(
+          color: borderColor,
+          width: 1.0,
+        ),
       ),
-    );
-
-    return TextField(
-      key: Key('${label}Field'),
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      maxLines: maxLines,
-      enabled: enabled,
-      autofocus: autofocus,
-      textCapitalization: textCapitalization,
-      textAlign: textAlign,
-      textAlignVertical: textAlignVertical,
-      textDirection: textDirection,
-      readOnly: readOnly,
-      showCursor: showCursor,
-      expands: expands,
-      maxLength: maxLength,
-      onChanged: onChanged,
-      onSubmitted: onSubmitted,
-      onTap: onTap,
-      focusNode: focusNode,
-      style: TextStyle(
-        color: theme.brightness == Brightness.dark ? Colors.white : Colors.black87,
-      ),
-      decoration: InputDecoration(
-        label: Text(label),
-        hintText: hintText,
-        border: inputBorder,
-        enabledBorder: inputBorder,
-        focusedBorder: inputBorder.copyWith(
-          borderSide: BorderSide(
-            color: theme.primaryColor,
-            width: 2.0,
-          ),
+      color: Colors.white,
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      child: TextField(
+        key: Key('${label}Field'),
+        controller: controller,
+        cursorColor: theme.primaryColor,
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        maxLines: maxLines,
+        enabled: enabled,
+        autofocus: autofocus,
+        textCapitalization: textCapitalization,
+        textAlign: textAlign,
+        textAlignVertical: textAlignVertical,
+        textDirection: textDirection,
+        readOnly: readOnly,
+        showCursor: showCursor,
+        expands: expands,
+        maxLength: maxLength,
+        onChanged: onChanged,
+        onSubmitted: onSubmitted,
+        onTap: onTap,
+        focusNode: focusNode,
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: 14,
         ),
-        errorBorder: inputBorder.copyWith(
-          borderSide: BorderSide(
+        decoration: InputDecoration(
+          label: DesignifyText(
+            label,
+            fontSize: 14,
+            color: Colors.black87,
+          ),
+          hintText: hintText,
+          border: InputBorder.none,
+          contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          counterText: showCounter ? null : '',
+          errorText: validator?.call(controller?.text),
+          errorStyle: TextStyle(
             color: theme.colorScheme.error,
-            width: 1.0,
+            fontSize: 12.0,
           ),
-        ),
-        focusedErrorBorder: inputBorder.copyWith(
-          borderSide: BorderSide(
-            color: theme.colorScheme.error,
-            width: 2.0,
-          ),
-        ),
-        contentPadding: contentPadding,
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        counterText: showCounter ? null : '',
-        errorText: validator?.call(controller?.text),
-        errorStyle: TextStyle(
-          color: theme.colorScheme.error,
-          fontSize: 12.0,
+          errorBorder: InputBorder.none,
+          focusedErrorBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          disabledBorder: InputBorder.none,
         ),
       ),
     );
+  }
   }
 }
 
