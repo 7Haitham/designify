@@ -1,6 +1,6 @@
 # Designify - مكتبة مكونات Flutter مخصصة
 
-مكتبة Designify توفر مجموعة من المكونات الجاهزة والمخصصة لتسريع تطوير تطبيقات Flutter الخاصة بك. تحتوي على واجهات مستخدم جذابة وسهلة التخصيص.
+مكتبة Designify توفر مجموعة من المكونات الجاهزة والمخصصة لتطوير تطبيقات Flutter باحترافية. تم تصميم المكونات لتكون سهلة الاستخدام وقابلة للتخصيص بالكامل مع دعم كامل للغة العربية واتجاه RTL.
 
 ## المميزات
 
@@ -79,40 +79,48 @@ DesignifyText.subtitle('عنوان فرعي');
 
 ```dart
 // زر أساسي
-DesignifyButton.primary(
+DesignifyElevatedButton(
   text: 'تسجيل الدخول',
   onPressed: () {
     // إجراءات الزر
   },
 );
 
-// زر ثانوي
-DesignifyButton.secondary(
-  text: 'إلغاء',
-  onPressed: () {
-    // إجراءات الزر
-  },
+// زر معطل
+DesignifyElevatedButton(
+  text: 'زر معطل',
+  onPressed: null,
+  isDisabled: true,
 );
 
-// زر مع أيقونة
-DesignifyButton.primary(
-  text: 'مشاركة',
-  icon: Icon(Icons.share),
+// زر تحميل
+DesignifyElevatedButton(
+  text: 'جاري التحميل',
+  onPressed: () {},
+  isLoading: true,
+);
+
+// زر مخطط
+DesignifyElevatedButton.outlined(
+  text: 'إلغاء',
   onPressed: () {},
 );
 ```
 
 #### الخصائص المتاحة:
-- `text`: نص الزر
-- `onPressed`: دالة الاستدعاء عند النقر
-- `backgroundColor`: لون خلفية الزر
-- `textColor`: لون نص الزر
-- `width`: عرض الزر
-- `height`: ارتفاع الزر
-- `borderRadius`: نصف قطر الزوايا
+- `text`: نص الزر (مطلوب)
+- `onPressed`: دالة الاستدعاء عند النقر (مطلوبة)
+- `isLoading`: عرض حالة التحميل (الافتراضي: false)
+- `isDisabled`: تعطيل الزر (الافتراضي: false)
+- `isFullWidth`: ملء العرض المتاح (الافتراضي: false)
+- `padding`: الحشو الداخلي للزر
+- `textStyle`: تنسيق النص
+- `backgroundColor`: لون الخلفية
+- `foregroundColor`: لون النص والأيقونة
 - `elevation`: ارتفاع الظل
-- `isLoading`: حالة التحميل
-- `isDisabled`: تعطيل الزر
+- `borderRadius`: نصف قطر الزوايا
+- `borderColor`: لون الحدود (للأزرار المخططة)
+- `icon`: أيقونة بجانب النص
 
 ---
 
@@ -151,18 +159,27 @@ DesignifyInputField.password(
 ```
 
 #### الخصائص المتاحة:
-- `label`: نص التسمية
+- `label`: نص التسمية (مطلوب)
 - `controller`: متحكم بحقل الإدخال
-- `keyboardType`: نوع لوحة المفاتيح
+- `keyboardType`: نوع لوحة المفاتيح (الافتراضي: TextInputType.text)
 - `hintText`: نص تلميحي
-- `obscureText`: إخفاء النص (لحقول كلمة المرور)
+- `obscureText`: إخفاء النص (مفيد لكلمات المرور)
 - `prefixIcon`: أيقونة بادئة
 - `suffixIcon`: أيقونة لاحقة
 - `validator`: دالة للتحقق من صحة الإدخال
-- `maxLines`: الحد الأقصى لعدد الأسطر
-- `enabled`: تفعيل/تعطيل الحقل
-- `borderColor`: لون الحدود
-- `borderRadius`: نصف قطر الزوايا
+- `maxLines`: الحد الأقصى لعدد الأسطر (الافتراضي: 1)
+- `enabled`: تفعيل/تعطيل الحقل (الافتراضي: true)
+- `borderColor`: لون الحدود (الافتراضي: Colors.grey)
+- `borderRadius`: نصف قطر الزوايا (الافتراضي: 8.0)
+- `autofocus`: التركيز التلقائي على الحقل
+- `textInputAction`: إجراء زر الإدخال
+- `onChanged`: دالة الاستدعاء عند تغيير النص
+- `onSubmitted`: دالة الاستدعاء عند إرسال النص
+- `textCapitalization`: تنسيق الحروف
+- `readOnly`: للقراءة فقط
+- `showCounter`: عرض عداد الأحرف
+- `maxLength`: الحد الأقصى لعدد الأحرف
+- `contentPadding`: الحشو الداخلي للحقل
 
 ---
 
@@ -207,7 +224,16 @@ DesignifyPicker(
 
 - Flutter SDK: ^3.0.0
 - Dart SDK: ^3.0.0
+- google_fonts: ^6.1.0 (للخطوط المخصصة)
 
 ## الدعم
 
 لأي استفسارات أو مشاكل، يرجى فتح [issue](https://github.com/yourusername/designify/issues) جديد.
+
+## الترخيص
+
+هذا المشروع مرخص تحت [MIT License](LICENSE).
+
+## المساهمة
+
+نرحب بمساهماتك! يرجى قراءة [دليل المساهمة](CONTRIBUTING.md) للمزيد من التفاصيل.
