@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:designify/designify.dart';
+// إذا كنت تستخدم DesignifyText للـ label، تأكد من استيراده بشكل صحيح.
+// import 'package:designify/src/widgets/custom_text.dart';
 
-/// حقل إدخال مخصص مع تصميم متكامل
-///
-/// يوفر حقل إدخال بتصميم متكامل مع خيارات تخصيص متعددة
-class DesignifyInputField extends StatelessWidget {
+class DesignifyInputField extends StatefulWidget {
   final String label;
   final TextEditingController? controller;
   final TextInputType keyboardType;
@@ -15,8 +13,6 @@ class DesignifyInputField extends StatelessWidget {
   final String? Function(String?)? validator;
   final int maxLines;
   final bool enabled;
-  final Color borderColor;
-  final double borderRadius;
   final bool autofocus;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
@@ -25,7 +21,7 @@ class DesignifyInputField extends StatelessWidget {
   final bool enableSuggestions;
   final TextCapitalization textCapitalization;
   final bool readOnly;
-  final GestureTapCallback? onTap;
+  final VoidCallback? onTap;
   final FocusNode? focusNode;
   final int? maxLength;
   final bool showCursor;
@@ -36,13 +32,24 @@ class DesignifyInputField extends StatelessWidget {
   final TextDirection? textDirection;
   final bool enableIMEPersonalizedLearning;
   final bool showCounter;
+
+  // خصائص التصميم المأخوذة من customInput كقيم افتراضية
+  final Color borderColor;
+  final double borderRadius;
+  final Color cardBackgroundColor;
+  final double cardElevation;
+  final EdgeInsetsGeometry cardMargin;
+  final Color? cursorColor; // يسمح بأن يكون null ليأخذ قيمة theme.primaryColor
+  final TextStyle textStyle;
+  final TextStyle labelStyle;
   final EdgeInsetsGeometry contentPadding;
+  final InputBorder inputBorder; // للتحكم الكامل في حدود TextField
 
   const DesignifyInputField({
-    Key? key,
+    super.key,
     required this.label,
     this.controller,
-    TextInputType? keyboardType,
+    this.keyboardType = TextInputType.text, // قيمة افتراضية من customInput
     this.hintText,
     this.obscureText = false,
     this.prefixIcon,
@@ -50,8 +57,6 @@ class DesignifyInputField extends StatelessWidget {
     this.validator,
     this.maxLines = 1,
     this.enabled = true,
-    this.borderColor = Colors.grey,
-    this.borderRadius = 8.0,
     this.autofocus = false,
     this.textInputAction,
     this.onChanged,
@@ -71,149 +76,154 @@ class DesignifyInputField extends StatelessWidget {
     this.textDirection,
     this.enableIMEPersonalizedLearning = true,
     this.showCounter = false,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-  }) : keyboardType = keyboardType ?? TextInputType.text,
-       super(key: key);
 
-  /// إنشاء حقل إدخال مع أيقونة بادئة
-  factory DesignifyInputField.withPrefixIcon({
-    required String label,
-    required IconData icon,
-    TextEditingController? controller,
-    TextInputType? keyboardType,
-    bool obscureText = false,
-    Color? iconColor,
-    double iconSize = 20.0,
-  }) {
-    return DesignifyInputField(
-      label: label,
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      prefixIcon: Icon(icon, color: iconColor, size: iconSize),
-    );
+    // القيم الافتراضية من customInput
+    this.borderColor = const Color(0xFFBDBDBD), // قيمة افتراضية لـ secondColor (Colors.grey.shade400)
+    this.borderRadius = 5.0,
+    this.cardBackgroundColor = Colors.white,
+    this.cardElevation = 0.0, // لجعل البطاقة مسطحة افتراضيًا
+    this.cardMargin = EdgeInsets.zero,
+    this.cursorColor, // إذا كان null، سيستخدم theme.primaryColor
+    this.textStyle = const TextStyle(fontWeight: FontWeight.normal, color: Colors.black, fontSize: 12.0), // يطابق mTextStyle(false,Colors.black,12)
+    this.labelStyle = const TextStyle(fontSize: 14.0, color: Colors.black87), // يطابق mText(text,size: 14) مع لون معقول
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    this.inputBorder = InputBorder.none, // هذا هو المفتاح للتصميم المطلوب
+  });
+
+  @override
+  State<DesignifyInputField> createState() => _DesignifyInputFieldState();
+}
+
+class _DesignifyInputFieldState extends State<DesignifyInputField> {
+  String? _errorText;
+  late FocusNode _internalFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _internalFocusNode = widget.focusNode ?? FocusNode();
+    widget.controller?.addListener(_handleControllerChange);
+    // التحقق الأولي إذا كان هناك validator والنص ليس فارغًا
+    if (widget.validator != null && widget.controller?.text.isNotEmpty == true) {
+      _errorText = widget.validator!(widget.controller!.text);
+    }
   }
 
-  /// إنشاء حقل كلمة مرور
-  factory DesignifyInputField.password({
-    required String label,
-    required TextEditingController controller,
-    bool showPassword = false,
-    VoidCallback? onToggleVisibility,
-  }) {
-    return DesignifyInputField(
-      label: label,
-      controller: controller,
-      obscureText: !showPassword,
-      keyboardType: TextInputType.visiblePassword,
-      suffixIcon: IconButton(
-        icon: Icon(
-          showPassword ? Icons.visibility : Icons.visibility_off,
-          color: Colors.grey,
-        ),
-        onPressed: onToggleVisibility,
-      ),
-    );
+  @override
+  void dispose() {
+    widget.controller?.removeListener(_handleControllerChange);
+    if (widget.focusNode == null) {
+      _internalFocusNode.dispose();
+    }
+    super.dispose();
+  }
+
+  void _handleControllerChange() {
+    final currentText = widget.controller?.text;
+    if (widget.validator != null) {
+      final newErrorText = widget.validator!(currentText);
+      if (newErrorText != _errorText) {
+        setState(() {
+          _errorText = newErrorText;
+        });
+      }
+    }
+    // استدعاء onChanged المقدم من المستخدم
+    widget.onChanged?.call(currentText ?? "");
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
-    // Create a card with the specified border
+
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         side: BorderSide(
-          color: borderColor,
-          width: 1.0,
+          color: widget.borderColor,
+          width: 1.0, // عرض ثابت للحدود
         ),
       ),
-      color: Colors.white,
-      elevation: 0,
-      margin: EdgeInsets.zero,
+      color: widget.cardBackgroundColor,
+      elevation: widget.cardElevation,
+      margin: widget.cardMargin,
       child: TextField(
-        key: Key('${label}Field'),
-        controller: controller,
-        cursorColor: theme.primaryColor,
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        maxLines: maxLines,
-        enabled: enabled,
-        autofocus: autofocus,
-        textCapitalization: textCapitalization,
-        textAlign: textAlign,
-        textAlignVertical: textAlignVertical,
-        textDirection: textDirection,
-        readOnly: readOnly,
-        showCursor: showCursor,
-        expands: expands,
-        maxLength: maxLength,
-        onChanged: onChanged,
-        onSubmitted: onSubmitted,
-        onTap: onTap,
-        focusNode: focusNode,
-        style: TextStyle(
-          color: Colors.black87,
-          fontSize: 14,
-        ),
+        key: widget.key ?? Key('${widget.label}Field'),
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
+        obscureText: widget.obscureText,
+        maxLines: widget.maxLines,
+        enabled: widget.enabled,
+        autofocus: widget.autofocus,
+        textInputAction: widget.textInputAction,
+        // onChanged يتم معالجته بواسطة _handleControllerChange
+        onSubmitted: widget.onSubmitted,
+        autocorrect: widget.autocorrect,
+        enableSuggestions: widget.enableSuggestions,
+        textCapitalization: widget.textCapitalization,
+        readOnly: widget.readOnly,
+        onTap: widget.onTap,
+        focusNode: _internalFocusNode,
+        maxLength: widget.maxLength,
+        showCursor: widget.showCursor,
+        expands: widget.expands,
+        textAlign: widget.textAlign,
+        textAlignVertical: widget.textAlignVertical,
+        enableInteractiveSelection: widget.enableInteractiveSelection,
+        textDirection: widget.textDirection,
+        enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+        cursorColor: widget.cursorColor ?? theme.primaryColor,
+        style: widget.textStyle,
         decoration: InputDecoration(
-          label: DesignifyText(
-            label,
-            fontSize: 14,
-            color: Colors.black87,
-          ),
-          hintText: hintText,
-          border: InputBorder.none,
-          contentPadding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          counterText: showCounter ? null : '',
-          errorText: validator?.call(controller?.text),
+          label: Text(widget.label, style: widget.labelStyle),
+          hintText: widget.hintText,
+          contentPadding: widget.contentPadding,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.suffixIcon,
+          counterText: widget.showCounter ? null : '',
+          errorText: _errorText,
           errorStyle: TextStyle(
             color: theme.colorScheme.error,
             fontSize: 12.0,
           ),
-          errorBorder: InputBorder.none,
-          focusedErrorBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
+          // تطبيق الحدود الافتراضية (InputBorder.none) على جميع الحالات
+          border: widget.inputBorder,
+          enabledBorder: widget.inputBorder,
+          focusedBorder: widget.inputBorder,
+          disabledBorder: widget.inputBorder,
+          errorBorder: widget.inputBorder, // مهم جدًا لـ error state
+          focusedErrorBorder: widget.inputBorder, // مهم جدًا لـ error state
         ),
       ),
     );
   }
-  }
-
-
-// دالة مساعدة للتوافق مع الكود القديم - يمكن إزالتها في المستقبل
-@Deprecated('Use DesignifyInputField instead')
-Card customInput(
-  BuildContext context,
-  String text,
-  TextEditingController controller, {
-  TextInputType inputType = TextInputType.text,
-  Color borderColor = Colors.blue,
-}) {
-  return Card(
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(5),
-      side: BorderSide(color: borderColor),
-    ),
-    color: Colors.white,
-    child: TextField(
-      key: Key("${text}Field"),
-      controller: controller,
-      cursorColor: Theme.of(context).primaryColor,
-      style: TextStyle(
-        color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black87,
-      ),
-      keyboardType: inputType,
-      decoration: InputDecoration(
-        label: DesignifyText(text, fontSize: 14),
-        border: InputBorder.none,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      ),
-    ),
-  );
 }
+
+/*
+// دالة customInput الأصلية للمقارنة (لا تقم بإلغاء التعليق إلا للمراجعة)
+Card customInputFunctionForReference(BuildContext context,String text,TextEditingController controller,{ TextInputType inputType=TextInputType.text, Color secondColor = const Color(0xFFBDBDBD)}) {
+    return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5), // widget.borderRadius
+                    side: BorderSide(
+                      color:secondColor, // widget.borderColor
+                    )
+                  ),
+                  color: Colors.white, // widget.cardBackgroundColor
+                  // elevation: 0, // widget.cardElevation
+                  // margin: EdgeInsets.zero, // widget.cardMargin
+                  child: TextField(
+                    // key: Key("usernameField"), // widget.key or generated
+                    controller:controller,
+                    cursorColor: Theme.of(context).primaryColor, // widget.cursorColor ?? theme.primaryColor
+                    style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black, fontSize: 12.0), // widget.textStyle
+                    keyboardType:inputType, // widget.keyboardType
+                    decoration: InputDecoration(
+                      label: Text(text, style: TextStyle(fontSize: 14.0, color: Colors.black87)), // Text(widget.label, style: widget.labelStyle)
+                      border: InputBorder.none, // widget.inputBorder
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5) // widget.contentPadding
+                    )
+                  ),
+                );
+  }
+*/
