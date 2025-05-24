@@ -41,7 +41,7 @@ class DesignifyInputField extends StatefulWidget {
     this.readOnly = false,
     this.onTap,
     this.maxLength,
-    this.borderColor = const Color(0xFFBDBDBD),
+    this.borderColor = Colors.transparent,
     this.borderRadius = 5.0,
     this.cardBackgroundColor = Colors.white,
     this.contentPadding,
