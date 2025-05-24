@@ -184,7 +184,7 @@ class DesignifyInputField extends StatelessWidget {
     );
   }
   }
-}
+
 
 // دالة مساعدة للتوافق مع الكود القديم - يمكن إزالتها في المستقبل
 @Deprecated('Use DesignifyInputField instead')
