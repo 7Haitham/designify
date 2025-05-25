@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // ألوان التطبيق
   static const Color primaryColor = Color(0xFF6200EE);
   static const Color secondaryColor = Color(0xFF03DAC6);
   static const Color errorColor = Color(0xFFB00020);
@@ -14,7 +13,6 @@ class AppTheme {
   static const Color onSurfaceColor = Colors.black;
   static const Color onErrorColor = Colors.white;
 
-  // خطوط التطبيق
   static final TextTheme textTheme = TextTheme(
     displayLarge: GoogleFonts.tajawal(fontSize: 32, fontWeight: FontWeight.bold),
     displayMedium: GoogleFonts.tajawal(fontSize: 28, fontWeight: FontWeight.bold),
@@ -27,7 +25,6 @@ class AppTheme {
     bodySmall: GoogleFonts.tajawal(fontSize: 12, fontWeight: FontWeight.normal),
   );
 
-  // ثيم التطبيق
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: const ColorScheme.light(
