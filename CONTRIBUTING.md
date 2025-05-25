@@ -1,72 +1,71 @@
-# دليل المساهمة في Designify
+# Contributing to Designify
 
-أولاً، شكراً لاهتمامك بالمساهمة في مشروع Designify! نحن نقدر دعم المجتمع ومساهماتكم.
+First off, thank you for considering contributing to the Designify project! We appreciate community support and your contributions.
 
-## كيف يمكنك المساهمة؟
+## How Can You Contribute?
 
-هناك عدة طرق للمساهمة في المشروع:
+There are several ways to contribute to the project:
 
-*   **الإبلاغ عن الأخطاء:** إذا وجدت خطأً أو مشكلة في الكود، يرجى إبلاغنا بها.
-*   **اقتراح التحسينات:** إذا كانت لديك فكرة لميزة جديدة أو تحسين لميزة موجودة، فنحن نرحب باقتراحاتك.
-*   **المساهمة بالكود:** يمكنك المساهمة مباشرة في الكود عن طريق إصلاح الأخطاء أو إضافة ميزات جديدة.
-*   **تحسين التوثيق:** إذا لاحظت أي نقص أو خطأ في التوثيق، يمكنك المساعدة في تحسينه.
+*   **Reporting Bugs:** If you find a bug or issue in the code, please let us know.
+*   **Suggesting Enhancements:** If you have an idea for a new feature or an improvement to an existing one, we welcome your suggestions.
+*   **Contributing Code:** You can contribute directly to the code by fixing bugs or adding new features.
+*   **Improving Documentation:** If you notice any shortcomings or errors in the documentation, you can help improve it.
 
-## الإبلاغ عن الأخطاء
+## Reporting Bugs
 
-قبل الإبلاغ عن خطأ، يرجى التأكد من:
+Before reporting a bug, please ensure:
 
-*   أنك تستخدم أحدث إصدار من Designify.
-*   أن الخطأ لم يتم الإبلاغ عنه مسبقًا (ابحث في قسم المشكلات Issues).
+*   You are using the latest version of Designify.
+*   The bug has not been reported previously (search in the Issues section).
 
-عند الإبلاغ عن خطأ، يرجى تقديم أكبر قدر ممكن من التفاصيل، بما في ذلك:
+When reporting a bug, please provide as much detail as possible, including:
 
-*   وصف واضح للمشكلة.
-*   خطوات إعادة إنتاج الخطأ.
-*   إصدار Designify الذي تستخدمه.
-*   نظام التشغيل والبيئة التي تعمل عليها.
-*   لقطات شاشة أو رسائل خطأ (إن وجدت).
+*   A clear description of the problem.
+*   Steps to reproduce the bug.
+*   The version of Designify you are using.
+*   The operating system and environment you are working on.
+*   Screenshots or error messages (if any).
 
-يمكنك فتح "مشكلة" (Issue) جديدة في مستودع المشروع على GitHub للإبلاغ عن الخطأ.
+You can open a new "Issue" in the project's GitHub repository to report the bug.
 
-## اقتراح التحسينات
+## Suggesting Enhancements
 
-نرحب دائمًا بالاقتراحات لتحسين Designify. عند اقتراح تحسين، يرجى توضيح:
+We always welcome suggestions to improve Designify. When suggesting an enhancement, please clarify:
 
-*   المشكلة التي يحلها اقتراحك أو الفائدة التي يقدمها.
-*   وصف تفصيلي للميزة أو التحسين المقترح.
+*   The problem your suggestion solves or the benefit it provides.
+*   A detailed description of the proposed feature or enhancement.
 
-يمكنك فتح "مشكلة" (Issue) جديدة مع تصنيف "enhancement" لوصف اقتراحك.
+You can open a new "Issue" with the "enhancement" label to describe your suggestion.
 
-## إرشادات المساهمة بالكود
+## Code Contribution Guidelines
 
-إذا كنت ترغب في المساهمة بالكود، يرجى اتباع الخطوات التالية:
+If you wish to contribute code, please follow these steps:
 
-1.  **قم بعمل Fork للمستودع:** ابدأ بإنشاء نسخة (fork) من مستودع Designify إلى حسابك الخاص على GitHub.
-2.  **قم بإنشاء فرع جديد:** قم بإنشاء فرع جديد (branch) لتغييراتك من الفرع الرئيسي (عادةً `main` أو `master`). استخدم اسمًا وصفيًا للفرع (مثل `fix/login-bug` أو `feature/new-widget`).
+1.  **Fork the Repository:** Start by forking the Designify repository to your own GitHub account.
+2.  **Create a New Branch:** Create a new branch for your changes from the main branch (usually `main` or `master`). Use a descriptive branch name (e.g., `fix/login-bug` or `feature/new-widget`).
     ```bash
-    git checkout -b اسم-الفرع-الخاص-بك
+    git checkout -b your-branch-name
     ```
-3.  **قم بإجراء التغييرات:** قم بكتابة الكود الخاص بك واختبره جيدًا.
-4.  **اتبع معايير الكود:** تأكد من أن الكود الخاص بك يتبع معايير التنسيق وأفضل الممارسات المتبعة في المشروع.
-5.  **قم بعمل Commit لتغييراتك:** استخدم رسائل commit واضحة وموجزة.
+3.  **Make Your Changes:** Write your code and test it thoroughly.
+4.  **Follow Code Standards:** Ensure your code adheres to the project's formatting standards and best practices.
+5.  **Commit Your Changes:** Use clear and concise commit messages.
     ```bash
-    git commit -m "إضافة وصف موجز للتغييرات"
+    git commit -m "Add a brief description of the changes"
     ```
-6.  **قم بدفع التغييرات إلى نسختك (Fork):**
+6.  **Push Your Changes to Your Fork:**
     ```bash
-    git push origin اسم-الفرع-الخاص-بك
+    git push origin your-branch-name
     ```
-7.  **قم بإنشاء طلب سحب (Pull Request):** افتح طلب سحب (Pull Request) من الفرع الخاص بك في نسختك إلى الفرع الرئيسي في مستودع Designify الأصلي. قدم وصفًا واضحًا للتغييرات التي قمت بها ولماذا هي ضرورية.
+7.  **Create a Pull Request:** Open a Pull Request from your branch in your fork to the main branch in the original Designify repository. Provide a clear description of the changes you made and why they are necessary.
 
-سيقوم أحد المشرفين على المشروع بمراجعة طلب السحب الخاص بك. قد يطلبون منك إجراء بعض التعديلات قبل دمج الكود.
+A project maintainer will review your pull request. They may ask you to make some adjustments before merging the code.
 
-## الترخيص
+## Licensing
 
-من خلال المساهمة في هذا المشروع، فإنك توافق على أن تكون مساهماتك مرخصة بموجب شروط رخصة MIT الخاصة بالمشروع.
+By contributing to this project, you agree that your contributions will be licensed under the project's MIT License.
 
-## مدونة قواعد السلوك
+## Code of Conduct
 
-نتوقع من جميع المساهمين الالتزام بمدونة قواعد السلوك الخاصة بنا. يرجى التأكد من قراءتها والالتزام بها في جميع تفاعلاتك داخل مجتمع المشروع. (يمكنك إنشاء ملف `CODE_OF_CONDUCT.md` منفصل أو الإشارة إلى مدونة قواعد سلوك قياسية مثل Contributor Covenant).
+We expect all contributors to adhere to our Code of Conduct. Please ensure you read and abide by it in all your interactions within the project community. (You can create a separate `CODE_OF_CONDUCT.md` file or refer to a standard code of conduct like the Contributor Covenant).
 
-
-شكراً مرة أخرى لمساهمتك!
+Thank you again for your contribution!

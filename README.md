@@ -1,153 +1,153 @@
-# Designify - مكتبة مكونات Flutter مخصصة
+# Designify - Custom Flutter Component Library
 
-مكتبة Designify توفر مجموعة من المكونات الجاهزة والمخصصة لتطوير تطبيقات Flutter باحترافية. تم تصميم المكونات لتكون سهلة الاستخدام وقابلة للتخصيص بالكامل مع دعم كامل للغة العربية واتجاه RTL.
+Designify is a library that provides a set of ready-made and custom components for developing Flutter applications professionally. The components are designed to be easy to use and fully customizable, with full support for the Arabic language and RTL direction.
 
-## المميزات
+## Features
 
-- 🎨 واجهات مستخدم جاهزة وجذابة
-- ⚡ أداء عالي وسهل الاستخدام
-- 🛠️ سهلة التخصيص والتوسعة
-- 📱 متوافقة مع جميع أحجام الشاشات
-- 🌍 دعم كامل للغة العربية واتجاه RTL
+- 🎨 Attractive and ready-to-use user interfaces
+- ⚡ High performance and easy to use
+- 🛠️ Easy to customize and extend
+- 📱 Compatible with all screen sizes
+- 🌍 Full support for Arabic language and RTL direction
 
-## التثبيت
+## Installation
 
-أضف المكتبة إلى ملف `pubspec.yaml`:
+Add the library to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
   designify: ^0.0.1
-  google_fonts: ^6.1.0  # مطلوب لدعم الخطوط المخصصة
+  google_fonts: ^6.1.0  # Required for custom font support
 ```
 
-ثم قم بتشغيل:
+Then run:
 
 ```bash
 flutter pub get
 ```
 
-## الاستخدام
+## Usage
 
-استيراد المكتبة في ملفك:
+Import the library into your file:
 
 ```dart
 import 'package:designify/designify.dart';
 ```
 
-## المكونات المتوفرة
+## Available Components
 
-### 1. DesignifyText - نص مخصص
+### 1. DesignifyText - Custom Text
 
-مكون لعرض النصوص بتنسيق متسق في التطبيق.
+A component for displaying text with consistent formatting in the application.
 
-#### الاستخدام الأساسي:
+#### Basic Usage:
 
 ```dart
-// نص عادي
-DesignifyText('مرحباً بك في التطبيق');
+// Normal text
+DesignifyText('Welcome to the app');
 
-// نص عريض
-DesignifyText('هذا نص عريض', isBold: true);
+// Bold text
+DesignifyText('This is bold text', isBold: true);
 
-// عنوان رئيسي
-DesignifyText.heading('عنوان رئيسي');
+// Heading
+DesignifyText.heading('Main Heading');
 
-// عنوان فرعي
-DesignifyText.subtitle('عنوان فرعي');
+// Subtitle
+DesignifyText.subtitle('Subheading');
 ```
 
-#### الخصائص المتاحة:
-- `text`: النص المراد عرضه
-- `fontSize`: حجم الخط (الافتراضي: 14.0)
-- `isBold`: إذا كان النص عريض (الافتراضي: false)
-- `color`: لون النص
-- `maxLines`: الحد الأقصى لعدد الأسطر
-- `textAlign`: محاذاة النص
-- `overflow`: سلوك تجاوز النص
-- `fontWeight`: سمك الخط
-- `letterSpacing`: المسافة بين الحروف
-- `height`: ارتفاع السطر
-- `decoration`: تزيين النص (تحته خط، إلخ)
+#### Available Properties:
+- `text`: The text to display
+- `fontSize`: Font size (default: 14.0)
+- `isBold`: If the text is bold (default: false)
+- `color`: Text color
+- `maxLines`: Maximum number of lines
+- `textAlign`: Text alignment
+- `overflow`: Text overflow behavior
+- `fontWeight`: Font weight
+- `letterSpacing`: Spacing between characters
+- `height`: Line height
+- `decoration`: Text decoration (underline, etc.)
 
 ---
 
-### 2. DesignifyButton - زر مخصص
+### 2. DesignifyButton - Custom Button
 
-زر مخصص مع خيارات تخصيص متعددة.
+A custom button with multiple customization options.
 
-#### الاستخدام الأساسي:
+#### Basic Usage:
 
 ```dart
-// زر أساسي
+// Basic button
 DesignifyElevatedButton(
-  text: 'تسجيل الدخول',
+  text: 'Login',
   onPressed: () {
-    // إجراءات الزر
+    // Button actions
   },
 );
 
-// زر معطل
+// Disabled button
 DesignifyElevatedButton(
-  text: 'زر معطل',
+  text: 'Disabled Button',
   onPressed: null,
   isDisabled: true,
 );
 
-// زر تحميل
+// Loading button
 DesignifyElevatedButton(
-  text: 'جاري التحميل',
+  text: 'Loading...',
   onPressed: () {},
   isLoading: true,
 );
 
-// زر مخطط
+// Outlined button
 DesignifyElevatedButton.outlined(
-  text: 'إلغاء',
+  text: 'Cancel',
   onPressed: () {},
 );
 ```
 
-#### الخصائص المتاحة:
-- `text`: نص الزر (مطلوب)
-- `onPressed`: دالة الاستدعاء عند النقر (مطلوبة)
-- `isLoading`: عرض حالة التحميل (الافتراضي: false)
-- `isDisabled`: تعطيل الزر (الافتراضي: false)
-- `isFullWidth`: ملء العرض المتاح (الافتراضي: false)
-- `padding`: الحشو الداخلي للزر
-- `textStyle`: تنسيق النص
-- `backgroundColor`: لون الخلفية
-- `foregroundColor`: لون النص والأيقونة
-- `elevation`: ارتفاع الظل
-- `borderRadius`: نصف قطر الزوايا
-- `borderColor`: لون الحدود (للأزرار المخططة)
-- `icon`: أيقونة بجانب النص
+#### Available Properties:
+- `text`: Button text (required)
+- `onPressed`: Callback function when clicked (required)
+- `isLoading`: Display loading state (default: false)
+- `isDisabled`: Disable the button (default: false)
+- `isFullWidth`: Fill available width (default: false)
+- `padding`: Internal padding of the button
+- `textStyle`: Text styling
+- `backgroundColor`: Background color
+- `foregroundColor`: Text and icon color
+- `elevation`: Shadow elevation
+- `borderRadius`: Corner radius
+- `borderColor`: Border color (for outlined buttons)
+- `icon`: Icon next to the text
 
 ---
 
-### 3. DesignifyInputField - حقل إدخال مخصص
+### 3. DesignifyInputField - Custom Input Field
 
-حقل إدخال بتصميم متكامل مع خيارات تخصيص متعددة.
+An input field with an integrated design and multiple customization options.
 
-#### الاستخدام الأساسي:
+#### Basic Usage:
 
 ```dart
-// حقل إدخال عادي
+// Normal input field
 DesignifyInputField(
-  label: 'اسم المستخدم',
+  label: 'Username',
   controller: _usernameController,
 );
 
-// حقل إدخال مع أيقونة
+// Input field with prefix icon
 DesignifyInputField.withPrefixIcon(
-  label: 'البريد الإلكتروني',
+  label: 'Email',
   icon: Icons.email,
   controller: _emailController,
   keyboardType: TextInputType.emailAddress,
 );
 
-// حقل كلمة مرور
+// Password field
 DesignifyInputField.password(
-  label: 'كلمة المرور',
+  label: 'Password',
   controller: _passwordController,
   showPassword: _showPassword,
   onToggleVisibility: () {
@@ -158,74 +158,74 @@ DesignifyInputField.password(
 );
 ```
 
-#### الخصائص المتاحة:
-- `label`: نص التسمية (مطلوب)
-- `controller`: متحكم بحقل الإدخال
-- `keyboardType`: نوع لوحة المفاتيح (الافتراضي: TextInputType.text)
-- `hintText`: نص تلميحي
-- `obscureText`: إخفاء النص (مفيد لكلمات المرور)
-- `prefixIcon`: أيقونة بادئة
-- `suffixIcon`: أيقونة لاحقة
-- `validator`: دالة للتحقق من صحة الإدخال
-- `maxLines`: الحد الأقصى لعدد الأسطر (الافتراضي: 1)
-- `enabled`: تفعيل/تعطيل الحقل (الافتراضي: true)
-- `borderColor`: لون الحدود (الافتراضي: Colors.grey)
-- `borderRadius`: نصف قطر الزوايا (الافتراضي: 8.0)
-- `autofocus`: التركيز التلقائي على الحقل
-- `textInputAction`: إجراء زر الإدخال
-- `onChanged`: دالة الاستدعاء عند تغيير النص
-- `onSubmitted`: دالة الاستدعاء عند إرسال النص
-- `textCapitalization`: تنسيق الحروف
-- `readOnly`: للقراءة فقط
-- `showCounter`: عرض عداد الأحرف
-- `maxLength`: الحد الأقصى لعدد الأحرف
-- `contentPadding`: الحشو الداخلي للحقل
+#### Available Properties:
+- `label`: Label text (required)
+- `controller`: Input field controller
+- `keyboardType`: Keyboard type (default: TextInputType.text)
+- `hintText`: Hint text
+- `obscureText`: Obscure text (useful for passwords)
+- `prefixIcon`: Prefix icon
+- `suffixIcon`: Suffix icon
+- `validator`: Function to validate input
+- `maxLines`: Maximum number of lines (default: 1)
+- `enabled`: Enable/disable the field (default: true)
+- `borderColor`: Border color (default: Colors.grey)
+- `borderRadius`: Corner radius (default: 8.0)
+- `autofocus`: Autofocus on the field
+- `textInputAction`: Input action button
+- `onChanged`: Callback function when text changes
+- `onSubmitted`: Callback function when text is submitted
+- `textCapitalization`: Text capitalization
+- `readOnly`: Read-only
+- `showCounter`: Show character counter
+- `maxLength`: Maximum number of characters
+- `contentPadding`: Internal padding of the field
 
 ---
 
-### 4. DesignifyPicker - منتقي مخصص
+### 4. DesignifyPicker - Custom Picker
 
-منتقي قوائم بتصميم عصري.
+A modern-designed list picker.
 
-#### الاستخدام الأساسي:
+#### Basic Usage:
 
 ```dart
 DesignifyPicker(
-  title: 'اختر المدينة',
-  items: ['الرياض', 'جدة', 'الدمام', 'مكة', 'المدينة'],
+  title: 'Select City',
+  items: ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah'],
   onChanged: (value) {
-    print('المدينة المختارة: $value');
+    print('Selected city: $value');
   },
-  hintText: 'اختر من القائمة',
+  hintText: 'Select from the list',
 );
 ```
 
-#### الخصائص المتاحة:
-- `title`: عنوان المنتقي
-- `items`: قائمة العناصر المتاحة
-- `onChanged`: دالة الاستدعاء عند تغيير القيمة
-- `hintText`: النص الافتراضي
-- `borderColor`: لون الحدود
-- `backgroundColor`: لون الخلفية
-- `closeButtonText`: نص زر الإغلاق
-- `defaultItemText`: نص العنصر الافتراضي
-- `itemExtent`: ارتفاع العنصر
-- `pickerHeight`: ارتفاع القائمة المنسدلة
+#### Available Properties:
+- `title`: Picker title
+- `items`: List of available items
+- `onChanged`: Callback function when value changes
+- `hintText`: Default text
+- `borderColor`: Border color
+- `backgroundColor`: Background color
+- `closeButtonText`: Close button text
+- `defaultItemText`: Default item text
+- `itemExtent`: Item height
+- `pickerHeight`: Dropdown list height
 
-## المتطلبات
+## Requirements
 
 - Flutter SDK: ^3.0.0
 - Dart SDK: ^3.0.0
-- google_fonts: ^6.1.0 (للخطوط المخصصة)
+- google_fonts: ^6.1.0 (for custom fonts)
 
-## الدعم
+## Support
 
-لأي استفسارات أو مشاكل، يرجى فتح [issue](https://github.com/7Haitham/designify/issues/new) جديد.
+For any inquiries or issues, please open a new [issue](https://github.com/7Haitham/designify/issues/new).
 
-## الترخيص
+## License
 
-هذا المشروع مرخص تحت [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
-## المساهمة
+## Contributing
 
-نرحب بمساهماتك! يرجى قراءة [دليل المساهمة](CONTRIBUTING.md) للمزيد من التفاصيل.
+We welcome your contributions! Please read the [Contribution Guide](CONTRIBUTING.md) for more details.
