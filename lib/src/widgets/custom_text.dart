@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// نص مخصص مع خيارات تنسيق متعددة
-///
-/// يوفر طريقة سهلة لإنشاء نصوص بتنسيق متسق في التطبيق
 class DesignifyText extends StatelessWidget {
   final String text;
   final double fontSize;
@@ -19,21 +16,7 @@ class DesignifyText extends StatelessWidget {
   final TextDecoration? decoration;
   final String? fontFamily;
 
-  /// إنشاء نص مخصص
-  ///
-  /// [text] النص المطلوب عرضه
-  /// [fontSize] حجم الخط (الافتراضي: 14.0)
-  /// [isBold] إذا كان النص عريض (الافتراضي: false)
-  /// [color] لون النص (الافتراضي: Colors.black54)
-  /// [maxLines] الحد الأقصى لعدد الأسطر (الافتراضي: 2)
-  /// [textAlign] محاذاة النص
-  /// [overflow] سلوك تجاوز النص
-  /// [softWrap] التفاف النص عند الحاجة
-  /// [fontWeight] سمك الخط
-  /// [letterSpacing] المسافة بين الحروف
-  /// [height] ارتفاع السطر
-  /// [decoration] تزيين النص (تحته خط، إلخ)
-  /// [fontFamily] عائلة الخط
+
   const DesignifyText(
     this.text, {
     Key? key,
@@ -51,7 +34,6 @@ class DesignifyText extends StatelessWidget {
     this.fontFamily,
   }) : super(key: key);
 
-  /// إنشاء نص بخط عريض
   factory DesignifyText.bold(
     String text, {
     double fontSize = 14.0,
@@ -67,7 +49,6 @@ class DesignifyText extends StatelessWidget {
     );
   }
 
-  /// إنشاء نص بعنوان رئيسي
   factory DesignifyText.heading(
     String text, {
     double fontSize = 24.0,
@@ -83,7 +64,6 @@ class DesignifyText extends StatelessWidget {
     );
   }
 
-  /// إنشاء نص فرعي
   factory DesignifyText.subtitle(
     String text, {
     double fontSize = 16.0,
@@ -126,44 +106,4 @@ class DesignifyText extends StatelessWidget {
         ? baseStyle.copyWith(fontFamily: fontFamily)
         : baseStyle;
   }
-}
-
-// دالة مساعدة للتوافق مع الكود القديم - يمكن إزالتها في المستقبل
-@Deprecated('Use DesignifyText instead')
-Text mText(
-  String text, {
-  double size = 14.0,
-  bool isBold = false,
-  Color? color,
-  int? maxLines,
-  TextAlign? textAlign,
-  TextOverflow? overflow,
-  FontWeight? fontWeight,
-  double? letterSpacing,
-  double? height,
-  TextDecoration? decoration,
-}) {
-  return Text(
-    text,
-    style: TextStyle(
-      fontSize: size,
-      fontWeight: isBold ? FontWeight.bold : fontWeight ?? FontWeight.normal,
-      color: color,
-      letterSpacing: letterSpacing,
-      height: height,
-      decoration: decoration,
-    ),
-    maxLines: maxLines,
-    textAlign: textAlign,
-    overflow: overflow,
-  );
-}
-
-@Deprecated('Use DesignifyText._buildTextStyle instead')
-TextStyle mTextStyle(bool isBold, Color color, double size) {
-  return GoogleFonts.rubik(
-    color: color,
-    fontSize: size,
-    fontWeight: isBold ? FontWeight.bold : null,
-  );
 }
