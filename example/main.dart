@@ -35,63 +35,58 @@ class HomePage extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             const Text(
-              'أزرار مخصصة',
+              'Custom Buttons',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-            // زر أساسي
             CustomButton.primary(
-              text: 'زر أساسي',
+              text: 'Primary Button',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('تم النقر على الزر الأساسي')),
+                  const SnackBar(content: Text('Primary button clicked')),
                 );
               },
             ),
             const SizedBox(height: 16),
-            // زر ثانوي
             CustomButton.secondary(
-              text: 'زر ثانوي',
+              text: 'Secondary Button',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('تم النقر على الزر الثانوي')),
+                  const SnackBar(content: Text('Secondary button clicked')),
                 );
               },
             ),
             const SizedBox(height: 16),
-            // زر مع أيقونة
             CustomButton.primary(
-              text: 'زر مع أيقونة',
+              text: 'Button with Icon',
               onPressed: () {},
               icon: const Icon(Icons.add, size: 20),
             ),
             const SizedBox(height: 16),
-            // زر معطل
-             CustomButton.primary(
-              text: 'زر معطل',
-              onPressed: (){},
+            CustomButton.primary(
+              text: 'Disabled Button',
+              onPressed: () {},
               isDisabled: true,
             ),
             const SizedBox(height: 16),
-            // زر جاري التحميل
-             CustomButton.primary(
-              text: 'جاري التحميل',
-              onPressed: (){},
+            CustomButton.primary(
+              text: 'Loading Button',
+              onPressed: () {},
               isLoading: true,
             ),
             const SizedBox(height: 30),
             const Text(
-              'نموذج إدخال',
+              'Input Form',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                labelText: 'البريد الإلكتروني',
+                labelText: 'Email',
                 prefixIcon: const Icon(Icons.email),
-                hintText: 'أدخل بريدك الإلكتروني',
+                hintText: 'Enter your email',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -101,9 +96,9 @@ class HomePage extends StatelessWidget {
             TextField(
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'كلمة المرور',
+                labelText: 'Password',
                 prefixIcon: const Icon(Icons.lock),
-                hintText: 'أدخل كلمة المرور',
+                hintText: 'Enter your password',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -111,11 +106,11 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             CustomButton.primary(
-              text: 'تسجيل الدخول',
+              text: 'Login',
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('جاري تسجيل الدخول...'),
+                    content: Text('Logging in...'),
                     backgroundColor: Colors.green,
                   ),
                 );
