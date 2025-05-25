@@ -212,14 +212,6 @@ DesignifyPicker(
 - `itemExtent`: ارتفاع العنصر
 - `pickerHeight`: ارتفاع القائمة المنسدلة
 
-## المساهمة
-
-نرحب بمساهماتك! يرجى قراءة [دليل المساهمة](CONTRIBUTING.md) للمزيد من التفاصيل.
-
-## الترخيص
-
-هذا المشروع مرخص تحت [MIT License](LICENSE).
-
 ## المتطلبات
 
 - Flutter SDK: ^3.0.0
@@ -228,7 +220,7 @@ DesignifyPicker(
 
 ## الدعم
 
-لأي استفسارات أو مشاكل، يرجى فتح [issue](https://github.com/yourusername/designify/issues) جديد.
+لأي استفسارات أو مشاكل، يرجى فتح [issue](https://github.com/7Haitham/designify/issues/new) جديد.
 
 ## الترخيص
 
