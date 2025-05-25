@@ -2,42 +2,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:designify/designify.dart';
 
-/// منتقي مخصص مع واجهة Cupertino
-///
-/// يوفر قائمة منسدلة بسيطة مع مظهر iOS
+
 class DesignifyPicker extends StatefulWidget {
-  /// عنوان الحقل
   final String title;
   
-  /// قائمة العناصر المتاحة للاختيار
   final List<String> items;
   
-  /// دالة الاستدعاء عند تغيير القيمة المحددة
   final ValueChanged<String>? onChanged;
   
-  /// النص الافتراضي المعروض عند عدم اختيار أي عنصر
   final String? hintText;
   
-  /// لون الحدود
   final Color borderColor;
   
-  /// لون الخلفية
   final Color? backgroundColor;
   
-  /// نص زر الإغلاق
   final String closeButtonText;
   
-  /// نص العنصر الافتراضي
   final String? defaultItemText;
   
-  /// الخط
-  final TextStyle? textStyle;
+   final TextStyle? textStyle;
   
-  /// ارتفاع العنصر في القائمة
-  final double itemExtent;
+   final double itemExtent;
   
-  /// ارتفاع القائمة المنسدلة
-  final double pickerHeight;
+   final double pickerHeight;
 
   const DesignifyPicker({
     Key? key,
@@ -128,7 +115,6 @@ class _DesignifyPickerState extends State<DesignifyPicker> {
           top: false,
           child: Column(
             children: [
-              // Header with Done button
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
@@ -165,7 +151,6 @@ class _DesignifyPickerState extends State<DesignifyPicker> {
                 ),
               ),
               
-              // Picker
               Expanded(
                 child: CupertinoPicker(
                   itemExtent: widget.itemExtent,
@@ -182,7 +167,6 @@ class _DesignifyPickerState extends State<DesignifyPicker> {
                     });
                   },
                   children: [
-                    // Default item
                     Center(
                       child: DesignifyText(
                         widget.defaultItemText ?? widget.title,

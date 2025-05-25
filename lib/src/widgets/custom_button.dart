@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
-/// زر مخصص مع خيارات تخصيص متعددة
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
@@ -33,7 +32,6 @@ class CustomButton extends StatelessWidget {
     this.elevation = 2.0,
   }) : super(key: key);
 
-  /// زر أساسي
   CustomButton.primary({
     Key? key,
     required String text,
@@ -52,7 +50,6 @@ class CustomButton extends StatelessWidget {
           icon: icon,
         );
 
-  /// زر ثانوي
   CustomButton.secondary({
     Key? key,
     required String text,

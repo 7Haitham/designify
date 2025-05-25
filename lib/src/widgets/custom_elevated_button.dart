@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:designify/designify.dart';
 
-/// زر مرتفع مخصص مع تصميم متكامل
-///
-/// يوفر زر مرتفع بتصميم متكامل مع خيارات تخصيص متعددة
+
 class DesignifyElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -46,7 +44,6 @@ class DesignifyElevatedButton extends StatelessWidget {
     this.expanded = false,
   }) : super(key: key);
 
-  /// زر أساسي مع لون الخلفية الأساسي
   factory DesignifyElevatedButton.primary({
     Key? key,
     required String text,
@@ -85,7 +82,6 @@ class DesignifyElevatedButton extends StatelessWidget {
     );
   }
 
-  /// زر ثانوي مع إطار
   factory DesignifyElevatedButton.outlined({
     Key? key,
     required String text,
@@ -196,34 +192,4 @@ class DesignifyElevatedButton extends StatelessWidget {
 
     return textWidget;
   }
-}
-
-// دالة مساعدة للتوافق مع الكود القديم - يمكن إزالتها في المستقبل
-@Deprecated('Use DesignifyElevatedButton instead')
-ElevatedButton customElevatedButton({
-  required String text,
-  required VoidCallback onPressed,
-  Color backgroundColor = Colors.blue,
-  Color textColor = Colors.white,
-  double borderRadius = 10.0,
-  double elevation = 5.0,
-  EdgeInsetsGeometry? padding,
-  Key? key,
-}) {
-  return ElevatedButton(
-    key: key,
-    style: ElevatedButton.styleFrom(
-      backgroundColor: backgroundColor,
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-      ),
-      elevation: elevation,
-    ),
-    onPressed: onPressed,
-    child: Text(
-      text,
-      style: TextStyle(color: textColor),
-    ),
-  );
 }

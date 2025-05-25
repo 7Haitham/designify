@@ -101,7 +101,6 @@ class DesignifyText extends StatelessWidget {
       decoration: decoration,
     );
 
-    // تطبيق عائلة الخط المخصصة إذا تم تحديدها
     return fontFamily != null
         ? baseStyle.copyWith(fontFamily: fontFamily)
         : baseStyle;
